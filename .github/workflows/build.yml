@@ -33,7 +33,7 @@ jobs:
         run: |
           in=slides
 
-          pandoc -s --toc -t beamer ${in}.md \
+          pandoc -s --toc --toc-depth=1  -t beamer ${in}.md \
             --pdf-engine=lualatex \
             --pdf-engine-opt=-shell-escape \
             --template=templates/daresbury.beamer \
