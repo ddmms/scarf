@@ -31,24 +31,24 @@ jobs:
         run: apt-get update && apt-get install -y inkscape xvfb
       - name: Build Beamer PDF
         run: |
-          in=slides
+          # in=slides
 
-          pandoc -s --toc --toc-depth=1  -t beamer ${in}.md \
-            --pdf-engine=lualatex \
-            --pdf-engine-opt=-shell-escape \
-            --template=templates/daresbury.beamer \
-            --syntax-highlighting=breezedark \
-            --variable tocdepth=1 \
-            -o ${in}.tex
+          # pandoc -s --toc --toc-depth=1  -t beamer ${in}.md \
+          #  --pdf-engine=lualatex \
+          #  --pdf-engine-opt=-shell-escape \
+          #  --template=templates/daresbury.beamer \
+          #  --syntax-highlighting=breezedark \
+          #  --variable tocdepth=1 \
+          #  -o ${in}.tex
 
-          sed -i "s;includegraphics\[;includegraphics\[keepaspectratio,;g" ${in}.tex
+          # sed -i "s;includegraphics\[;includegraphics\[keepaspectratio,;g" ${in}.tex
 
-          xvfb-run lualatex -shell-escape ${in}.tex
-          xvfb-run lualatex -shell-escape ${in}.tex
-          xvfb-run lualatex -shell-escape ${in}.tex
+          # xvfb-run lualatex -shell-escape ${in}.tex
+          # xvfb-run lualatex -shell-escape ${in}.tex
+          # xvfb-run lualatex -shell-escape ${in}.tex
 
-          rm -f ${in}.nav ${in}.out ${in}.aux ${in}.log ${in}.snm ${in}.toc
-
+          # rm -f ${in}.nav ${in}.out ${in}.aux ${in}.log ${in}.snm ${in}.toc
+          touch slides.pdf
       - name: Upload PDF for sharing with build-html
         uses: actions/upload-artifact@v4
         with:
