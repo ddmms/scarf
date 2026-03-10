@@ -46,7 +46,7 @@ T/S - Total cores/cores per socket
 ## scarf21
 
 \vspace{-5mm}
-![rh](figures/scarf21.pdf){width=100%}
+![EPYC 7502P High level schematic](figures/scarf21.pdf){width=100%}
 
 
 ## Cores vs. Threads: AMD SMT
@@ -109,13 +109,13 @@ T/S - Total cores/cores per socket
 - **40GB Standard-Memory:** `gn3000`, `gn3001` and `gn0001-gn0006`.
 - **Form Factor:** All are SXM4 modules with high-speed **NVLink** peer-to-peer interconnect (NV4).
 
-## gn3002
+## gn3000-gn3002
 
-![th](figures/gn3002_topology_diagram.pdf){width=100%}
+![GPU 3000-3002 High level topology](figures/gn3002_topology_diagram.pdf){width=100%}
 
-## gn0004
+## gn0001-gn0006
 
-![th](figures/gn0004_topology_diagram.pdf){width=100%}
+![GPU 0000-0006 High level topology](figures/gn0004_topology_diagram.pdf){width=100%}
 
 ## GPU Host CPU: AMD EPYC 7302
 
@@ -207,7 +207,7 @@ T/S - Total cores/cores per socket
 |                       |          |            |          | `vsim`                     |
 +-----------------------+----------+------------+----------+----------------------------+
 
-- scarf has a default of 4G per CPUs
+- scarf has a default limit set in slurm of 4G per CPU(logical)
 - `--constraint, -C` can be used to select features
 
 ## Resource Allocation (2/2)
@@ -232,9 +232,6 @@ T/S - Total cores/cores per socket
 | `gn[3000-3003]`       | 64       | 257 GB     | ~8 GB    | `gpu,amd,scarf23,`         |
 |                       |          |            |          | `scarf23b`                 |
 +-----------------------+----------+------------+----------+----------------------------+
-
-- scarf has a default of 4G per CPUs
-- `--constraint, -C` can be used to select features
 
 # Bad Practices
 
@@ -375,7 +372,7 @@ mpirun --cpu-bind=cores
 
 ## Case 7
 
-![a](figures/bad_binding_diagram.pdf){width=100%}
+![MPI Binding for above script](figures/bad_binding_diagram.pdf){width=100%}
 
 # Good Practice
 
@@ -520,15 +517,15 @@ srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK
 ```
 ## block:block
 \vspace{-1.5cm}
-![threads](figures/block_32mpi_diagram.pdf){width=100%}
+![MPI Binding for 32 MPI processes, with block distribution](figures/block_32mpi_diagram.pdf){width=100%}
 
 ## cyclic:cyclic
 \vspace{-1.5cm}
-![threads](figures/cyclic_32mpi_diagram.pdf){width=100%}
+![MPI Binding for 32 MPI processes, with cyclic distribution](figures/cyclic_32mpi_diagram.pdf){width=100%}
 
 ## Default
 \vspace{-1.5cm}
-![threads](figures/default_32mpi_diagram.pdf){width=100%}
+![MPI Binding for 32 MPI processes, with default distribution](figures/default_32mpi_diagram.pdf){width=100%}
 
 
 
@@ -554,18 +551,18 @@ srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK
 
 ## block:block
 \vspace{-15mm}
-![th](figures/block_8mpi_fat_diagram.pdf){width=100%}
+![MPI Binding 8MPIx8 openmp, block distribution](figures/block_8mpi_fat_diagram.pdf){width=100%}
 
 ## cyclic:cyclic
 
 \vspace{-15mm}
-![th](figures/cyclic_8mpi_fat_diagram.pdf){width=100%}
+![MPI Binding 8MPIx8 openmp, cyclic distribution](figures/cyclic_8mpi_fat_diagram.pdf){width=100%}
 
 
 ## default
 \vspace{-15mm}
 
-![fg](figures/default_8mpi_nobind_diagram.pdf){width=100%}
+![MPI Binding 8MPIx8 openmp, default distribution](figures/default_8mpi_nobind_diagram.pdf){width=100%}
 
 ## physical cores
 
@@ -593,12 +590,12 @@ srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK
 ## no hint
 
 \vspace{-15mm}
-![rh](figures/block_8mpi_nohint_diagram.pdf){width=100%}
+![MPI Binding with OpenMP with SMT enabled](figures/block_8mpi_nohint_diagram.pdf){width=100%}
 
 ## hint
 
 \vspace{-15mm}
-![rh](figures/block_8mpi_hint_diagram.pdf){width=100%}
+![MPI Binding with OpenMP with SMT disabled](figures/block_8mpi_hint_diagram.pdf){width=100%}
 
 ## hybrid notes
 
@@ -608,7 +605,8 @@ srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK
 - the fine tuning buttons may be different compared with other machines so test yours for scarf
 - if you use OpenMP pay attention to OMP placing and binding too, not touched here.
 - check if SMT offer or not advantages for your case
-- if you disable SMT, use `--mem=0` to get access to full memory node, in `--exclusive` or right amount of memory otherwise
+- if you disable SMT, use `--mem=0` to get access to full memory node, in `--exclusive` or right amount of memory otherwise,
+  `--mem-per-cpu` is another option
 
 ## Interactive Jobs
 
