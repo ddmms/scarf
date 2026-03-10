@@ -46,6 +46,7 @@ jobs:
 
           # Move PDF into site root so it is served alongside index.html
           # mv slides.pdf _site/slides.pdf
+          touch _site/slides.pdf
 
           # Write a small HTML snippet with the download link
           cat > /tmp/download-link.html << 'HTML'
