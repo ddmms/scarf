@@ -37,7 +37,6 @@ jobs:
           name: slides-pdf
           path: slides.pdf
 
-  # ── Job 2: HTML via pandoc → GitHub Pages ─────────────────────────────────
   build-html:
     runs-on: ubuntu-latest
     needs: build-pdf                        # wait for the PDF to be ready
@@ -82,7 +81,6 @@ jobs:
         with:
           path: _site
 
-  # ── Job 3: Deploy HTML to GitHub Pages ────────────────────────────────────
   deploy:
     needs: build-html
     runs-on: ubuntu-latest
