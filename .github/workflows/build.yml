@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install inkscape
-        run: sudo apt-get update && sudo apt-get install -y inkscape xvfb texlive-latex-base pandoc texlive-extra texlive-base texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-luatex latexmk
+        run: sudo apt-get update && sudo apt-get install -y inkscape xvfb  pandoc texlive-base texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-luatex latexmk
       - name: Build Beamer PDF
         run: |
           # in=slides
