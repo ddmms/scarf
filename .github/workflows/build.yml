@@ -28,7 +28,7 @@ jobs:
           tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2025/tlnet-final
           tlmgr install catchfile extsizes moresize mathtools svg transparent
       - name: Install inkscape
-        run: apt-get update && apt-get install -y inkscape
+        run: apt-get update && apt-get install -y inkscape xvfb
       - name: Build Beamer PDF
         run: |
           in=slides
@@ -42,9 +42,9 @@ jobs:
 
           sed -i "s;includegraphics\[;includegraphics\[keepaspectratio,;g" ${in}.tex
 
-          lualatex -shell-escape ${in}.tex
-          lualatex -shell-escape ${in}.tex
-          lualatex -shell-escape ${in}.tex
+          xvfb-run lualatex -shell-escape ${in}.tex
+          xvfb-run lualatex -shell-escape ${in}.tex
+          xvfb-run lualatex -shell-escape ${in}.tex
 
           rm -f ${in}.nav ${in}.out ${in}.aux ${in}.log ${in}.snm ${in}.toc
 
