@@ -46,7 +46,7 @@ T/S - Total cores/cores per socket
 ## scarf21
 
 \vspace{-5mm}
-![EPYC 7502P High level schematic](figures/scarf21.svg){width=100%}
+![EPYC 7502P High level schematic](figures/scarf21.svg){width=90%}
 
 
 ## Cores vs. Threads: AMD SMT
@@ -516,15 +516,12 @@ srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK
 --cpu-bind=cores,verbose ./my_app
 ```
 ## block:block
-\vspace{-1.5cm}
 ![MPI Binding for 32 MPI processes, with block distribution](figures/block_32mpi_diagram.svg){width=100%}
 
 ## cyclic:cyclic
-\vspace{-1.5cm}
 ![MPI Binding for 32 MPI processes, with cyclic distribution](figures/cyclic_32mpi_diagram.svg){width=100%}
 
 ## Default
-\vspace{-1.5cm}
 ![MPI Binding for 32 MPI processes, with default distribution](figures/default_32mpi_diagram.svg){width=100%}
 
 
@@ -550,17 +547,14 @@ srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK
 ```
 
 ## block:block
-\vspace{-15mm}
 ![MPI Binding 8MPIx8 openmp, block distribution](figures/block_8mpi_fat_diagram.svg){width=100%}
 
 ## cyclic:cyclic
 
-\vspace{-15mm}
 ![MPI Binding 8MPIx8 openmp, cyclic distribution](figures/cyclic_8mpi_fat_diagram.svg){width=100%}
 
 
 ## default
-\vspace{-15mm}
 
 ![MPI Binding 8MPIx8 openmp, default distribution](figures/default_8mpi_nobind_diagram.svg){width=100%}
 
@@ -589,12 +583,10 @@ srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK
 
 ## no hint
 
-\vspace{-15mm}
 ![MPI Binding with OpenMP with SMT enabled](figures/block_8mpi_nohint_diagram.svg){width=100%}
 
 ## hint
 
-\vspace{-15mm}
 ![MPI Binding with OpenMP with SMT disabled](figures/block_8mpi_hint_diagram.svg){width=100%}
 
 ## hybrid notes
