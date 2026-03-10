@@ -29,26 +29,8 @@ jobs:
 
       - name: Build Beamer PDF
         run: |
-          in=slides
-
-         # pandoc -s --toc -t beamer ${in}.md \
-         #  --pdf-engine=lualatex \
-         #  --pdf-engine-opt=-shell-escape \
-         #  --template=templates/daresbury.beamer \
-         #  --syntax-highlighting=breezedark \
-         #  -o ${in}.tex
-
-         # 2. Patch includegraphics to always preserve aspect ratio
-         # sed -i "s;includegraphics\[;includegraphics\[keepaspectratio,;g" ${in}.tex
-
-         # 3. Three lualatex passes to resolve TOC / cross-references
-         # lualatex -shell-escape ${in}.tex
-         # lualatex -shell-escape ${in}.tex
-         # lualatex -shell-escape ${in}.tex
-
-         # 4. Remove LaTeX auxiliary files
-         # rm -f ${in}.nav ${in}.out ${in}.aux ${in}.log ${in}.snm ${in}.toc
           touch slides.pdf
+
       - name: Upload PDF for sharing with build-html
         uses: actions/upload-artifact@v4
         with:
@@ -72,9 +54,6 @@ jobs:
       - name: Convert slides.md to index.html
         run: |
           mkdir -p _site
-
-          # Move PDF into site root so it is served alongside index.html
-          # mv slides.pdf _site/slides.pdf
 
           # Write a small HTML snippet with the download link
           cat > /tmp/download-link.html << 'HTML'
