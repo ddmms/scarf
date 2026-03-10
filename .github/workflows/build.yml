@@ -18,17 +18,12 @@ concurrency:
 jobs:
   build-pdf:
     runs-on: ubuntu-latest
-    container: pandoc/latex:latest-ubuntu   # pandoc + LuaLaTeX pre-installed
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install missing TeX Live packages
-        run: |
-          tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2025/tlnet-final
-          tlmgr install catchfile extsizes moresize mathtools svg transparent
       - name: Install inkscape
-        run: apt-get update && apt-get install -y inkscape xvfb
+        run: apt-get update && apt-get install -y inkscape xvfb texlive-latex-base pandoc texlive-extra
       - name: Build Beamer PDF
         run: |
           # in=slides
@@ -49,28 +44,11 @@ jobs:
 
           # rm -f ${in}.nav ${in}.out ${in}.aux ${in}.log ${in}.snm ${in}.toc
           touch slides.pdf
-      - name: Upload PDF for sharing with build-html
-        uses: actions/upload-artifact@v4
-        with:
-          name: slides-pdf
-          path: slides.pdf
-
-  build-html:
-    runs-on: ubuntu-latest
-    needs: build-pdf                        # wait for the PDF to be ready
-    container: pandoc/core:latest-ubuntu
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download PDF artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: slides-pdf
+          mkdir -p _site
+          cp slides.pdf _site/
 
       - name: Convert slides.md to index.html
         run: |
-          mkdir -p _site
 
           # Write a small HTML snippet with the download link
           cat > /tmp/download-link.html << 'HTML'
@@ -101,7 +79,7 @@ jobs:
           path: _site
 
   deploy:
-    needs: build-html
+    needs: build-pdf
     runs-on: ubuntu-latest
     environment:
       name: github-pages

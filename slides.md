@@ -45,7 +45,7 @@ T/S - Total cores/cores per socket
 ## scarf21
 
 \vspace{-5mm}
-![EPYC 7502P High level schematic](figures/scarf21.svg){width=90%}
+![EPYC 7502P High level schematic](figures/scarf21.svg){width=85%}
 
 
 ## Cores vs. Threads: AMD SMT
