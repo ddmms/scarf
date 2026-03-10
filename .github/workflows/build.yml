@@ -86,6 +86,7 @@ jobs:
           # Build index.html with the download link prepended
           pandoc slides.md \
             --standalone \
+            --toc \
             --include-before-body=/tmp/download-link.html \
             --output "_site/index.html"
 
