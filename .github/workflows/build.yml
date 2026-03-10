@@ -25,7 +25,7 @@ jobs:
 
       - name: Install missing TeX Live packages
         run: |
-          apt-get update && apt-get install -y texlive-latex-extra && mktexlsr
+          tlmgr install extsizes
 
       - name: Build Beamer PDF
         run: |
