@@ -4,9 +4,9 @@ subtitle: Dos and Don'ts
 author: Alin M Elena
 date: March 7, 2026
 institute: scientific computing department
-monofont: Hack
-mainfont: NotoSans
-mathfont: AsanaMath
+#monofont: Hack
+#mainfont: NotoSans
+#mathfont: AsanaMath
 theme: Montpellier
 fontsize: 20pt
 classoption:
