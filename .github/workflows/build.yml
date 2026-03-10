@@ -23,37 +23,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install missing TeX Live packages
-        run: |
-          apt-get update && apt-get install -y texlive-latex-extra && mktexlsr
+    #  - name: Install missing TeX Live packages
+    #    run: |
+    #      apt-get update && apt-get install -y texlive-latex-extra && mktexlsr
 
-      - name: Build Beamer PDF
-        run: |
-          in=slides
+    #  - name: Build Beamer PDF
+    #    run: |
+    #      in=slides
 
-          pandoc -s --toc -t beamer ${in}.md \
-            --pdf-engine=lualatex \
-            --pdf-engine-opt=-shell-escape \
-            --template=templates/daresbury.beamer \
-            --syntax-highlighting=breezedark \
-            -o ${in}.tex
+    #      pandoc -s --toc -t beamer ${in}.md \
+    #        --pdf-engine=lualatex \
+    #        --pdf-engine-opt=-shell-escape \
+    #        --template=templates/daresbury.beamer \
+    #        --syntax-highlighting=breezedark \
+    #        -o ${in}.tex
 
           # 2. Patch includegraphics to always preserve aspect ratio
-          sed -i "s;includegraphics\[;includegraphics\[keepaspectratio,;g" ${in}.tex
+    #      sed -i "s;includegraphics\[;includegraphics\[keepaspectratio,;g" ${in}.tex
 
           # 3. Three lualatex passes to resolve TOC / cross-references
-          lualatex -shell-escape ${in}.tex
-          lualatex -shell-escape ${in}.tex
-          lualatex -shell-escape ${in}.tex
+    #      lualatex -shell-escape ${in}.tex
+    #      lualatex -shell-escape ${in}.tex
+    #      lualatex -shell-escape ${in}.tex
 
           # 4. Remove LaTeX auxiliary files
-          rm -f ${in}.nav ${in}.out ${in}.aux ${in}.log ${in}.snm ${in}.toc
+    #      rm -f ${in}.nav ${in}.out ${in}.aux ${in}.log ${in}.snm ${in}.toc
 
-      - name: Upload PDF for sharing with build-html
-        uses: actions/upload-artifact@v4
-        with:
-          name: slides-pdf
-          path: slides.pdf
+    #  - name: Upload PDF for sharing with build-html
+    #    uses: actions/upload-artifact@v4
+    #    with:
+    #      name: slides-pdf
+    #      path: slides.pdf
 
   # ── Job 2: HTML via pandoc → GitHub Pages ─────────────────────────────────
   build-html:
@@ -74,7 +74,7 @@ jobs:
           mkdir -p _site
 
           # Move PDF into site root so it is served alongside index.html
-          mv slides.pdf _site/slides.pdf
+    #      mv slides.pdf _site/slides.pdf
 
           # Write a small HTML snippet with the download link
           cat > /tmp/download-link.html << 'HTML'
