@@ -12,7 +12,7 @@ fontsize: 20pt
 classoption:
 - professionalfonts
 toc: false
-tocdepth: 1
+toc-depth: 1
 intro: false
 ---
 
