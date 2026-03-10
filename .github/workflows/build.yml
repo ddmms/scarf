@@ -25,6 +25,7 @@ jobs:
 
       - name: Install missing TeX Live packages
         run: |
+          tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2025/tlnet-final
           tlmgr install extsizes
 
       - name: Build Beamer PDF
