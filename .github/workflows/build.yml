@@ -24,9 +24,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install missing TeX Live packages
+        run: |
+          # extsizes provides size20.clo required by the Daresbury template
+          apt-get update && apt-get install -y texlive-latex-extra
+
       - name: Build Beamer PDF
         run: |
-          set -x
           in=slides
 
           # 1. Convert slides.md → slides.tex with custom Beamer template
