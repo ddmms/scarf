@@ -27,7 +27,8 @@ jobs:
         run: |
           tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2025/tlnet-final
           tlmgr install catchfile extsizes moresize mathtools svg transparent
-
+      - name: Install inkscape
+        run: apt-get update && apt-get install -y inkscape
       - name: Build Beamer PDF
         run: |
           in=slides
