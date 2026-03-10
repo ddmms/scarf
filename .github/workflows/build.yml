@@ -16,7 +16,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ── Job 1: Beamer PDF via LuaLaTeX ────────────────────────────────────────
   build-pdf:
     runs-on: ubuntu-latest
     container: pandoc/latex:latest-ubuntu   # pandoc + LuaLaTeX pre-installed
@@ -26,19 +25,17 @@ jobs:
 
       - name: Install missing TeX Live packages
         run: |
-          # extsizes provides size20.clo required by the Daresbury template
-          apt-get update && apt-get install -y texlive-latex-extra
+          apt-get update && apt-get install -y texlive-latex-extra && mktexlsr
 
       - name: Build Beamer PDF
         run: |
           in=slides
 
-          # 1. Convert slides.md → slides.tex with custom Beamer template
           pandoc -s --toc -t beamer ${in}.md \
             --pdf-engine=lualatex \
             --pdf-engine-opt=-shell-escape \
             --template=templates/daresbury.beamer \
-            --highlight-style=breezedark \
+            --syntax-highlighting=breezedark \
             -o ${in}.tex
 
           # 2. Patch includegraphics to always preserve aspect ratio
