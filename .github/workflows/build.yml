@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name:
+      - name: test
         run: |
           echo "test"
 
@@ -45,7 +45,7 @@ jobs:
           mkdir -p _site
 
           # Move PDF into site root so it is served alongside index.html
-    #      mv slides.pdf _site/slides.pdf
+          # mv slides.pdf _site/slides.pdf
 
           # Write a small HTML snippet with the download link
           cat > /tmp/download-link.html << 'HTML'
