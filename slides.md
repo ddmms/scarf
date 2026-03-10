@@ -512,7 +512,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
 
-srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK \
+srun --export=ALL --distribution=block:block --cpus-per-task=$SLURM_CPUS_PER_TASK \
 --cpu-bind=cores,verbose ./my_app
 ```
 ## block:block
@@ -542,7 +542,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
 
-srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK \
+srun --export=ALL --distribution=block:block --cpus-per-task=$SLURM_CPUS_PER_TASK \
 --cpu-bind=cores,verbose ./my_app
 ```
 
@@ -577,7 +577,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
 
-srun --export=ALL --distribution=block:block--cpus-per-task=$SLURM_CPUS_PER_TASK \
+srun --export=ALL --distribution=block:block --cpus-per-task=$SLURM_CPUS_PER_TASK \
 --cpu-bind=cores,verbose ./my_app
 ```
 
