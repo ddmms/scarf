@@ -11,7 +11,6 @@ theme: Montpellier
 fontsize: 20pt
 classoption:
 - professionalofonts
-- lualatex
 toc: true
 intro: false
 ---

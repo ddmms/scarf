@@ -37,7 +37,7 @@ jobs:
             --pdf-engine=lualatex \
             --pdf-engine-opt=-shell-escape \
             --template=templates/daresbury.beamer \
-            --highlight-style=breezedark \
+            --syntax-highlighting=breezedark \
             -o ${in}.tex
 
           sed -i "s;includegraphics\[;includegraphics\[keepaspectratio,;g" ${in}.tex
