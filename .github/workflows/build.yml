@@ -29,7 +29,22 @@ jobs:
 
       - name: Build Beamer PDF
         run: |
-          touch slides.pdf
+          in=slides
+
+          pandoc -s --toc -t beamer ${in}.md \
+            --pdf-engine=lualatex \
+            --pdf-engine-opt=-shell-escape \
+            --template=templates/daresbury.beamer \
+            --highlight-style=breezedark \
+            -o ${in}.tex
+
+          sed -i "s;includegraphics\[;includegraphics\[keepaspectratio,;g" ${in}.tex
+
+          lualatex -shell-escape ${in}.tex
+          lualatex -shell-escape ${in}.tex
+          lualatex -shell-escape ${in}.tex
+
+          rm -f ${in}.nav ${in}.out ${in}.aux ${in}.log ${in}.snm ${in}.toc
 
       - name: Upload PDF for sharing with build-html
         uses: actions/upload-artifact@v4
