@@ -24,9 +24,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install pygments (for breezedark highlight style)
-        run: apt-get install -y python-pygments
-
       - name: Build Beamer PDF
         run: |
           set -x
