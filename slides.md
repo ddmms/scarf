@@ -10,7 +10,7 @@ institute: scientific computing department
 theme: Montpellier
 fontsize: 20pt
 classoption:
-- professionalofonts
+- professionalfonts
 toc: true
 intro: false
 ---
