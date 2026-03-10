@@ -31,12 +31,12 @@ jobs:
         run: |
           in=slides
 
-          # pandoc -s --toc -t beamer ${in}.md \
-          #  --pdf-engine=lualatex \
-          #  --pdf-engine-opt=-shell-escape \
-          #  --template=templates/daresbury.beamer \
-          #  --syntax-highlighting=breezedark \
-          #  -o ${in}.tex
+         # pandoc -s --toc -t beamer ${in}.md \
+         #  --pdf-engine=lualatex \
+         #  --pdf-engine-opt=-shell-escape \
+         #  --template=templates/daresbury.beamer \
+         #  --syntax-highlighting=breezedark \
+         #  -o ${in}.tex
 
          # 2. Patch includegraphics to always preserve aspect ratio
          # sed -i "s;includegraphics\[;includegraphics\[keepaspectratio,;g" ${in}.tex
@@ -48,7 +48,7 @@ jobs:
 
          # 4. Remove LaTeX auxiliary files
          # rm -f ${in}.nav ${in}.out ${in}.aux ${in}.log ${in}.snm ${in}.toc
-         touch slides.pdf
+          touch slides.pdf
       - name: Upload PDF for sharing with build-html
         uses: actions/upload-artifact@v4
         with:
