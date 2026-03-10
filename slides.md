@@ -11,7 +11,7 @@ theme: Montpellier
 fontsize: 20pt
 classoption:
 - professionalfonts
-toc: true
+toc: false
 tocdepth: 1
 intro: false
 ---
