@@ -305,7 +305,7 @@ $endif$
     \node[below=1cm, xshift=10mm, yshift=10mm] (institute) at (author.south){
       \usebeamerfont{author}\usebeamercolor[myblue]{}{\large\insertinstitute}
     };
-    \node[below=1.5cm,yshift=-20mm] (date) at (institute.south){
+    \node[below=1.5cm,yshift=-5mm] (date) at (institute.south){
       \usebeamerfont{date}\usebeamercolor[myblue]{}{\large\insertdate}
     };
     \end{tikzpicture}
