@@ -32,7 +32,7 @@ jobs:
            --pdf-engine=lualatex \
            --pdf-engine-opt=-shell-escape \
            --template=templates/daresbury.beamer \
-           --syntax-highlighting=breezedark \
+           --highlight-style=breezedark \
            --variable tocdepth=1 \
            -o ${in}.tex
 
